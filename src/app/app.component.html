@@ -2,18 +2,33 @@
 (using bootstrap)
 
 <div class="container mt-5">
-  <form>
+  <form [formGroup]="regForm">
     <div class="form-group">
       <label for="firstname">Firstname</label>
-      <input type="text" id="firstname" class="form-control" />
+      <input
+        type="text"
+        id="firstname"
+        class="form-control"
+        formControlName="firstname"
+      />
     </div>
     <div class="form-group">
       <label for="lastname">Lastname</label>
-      <input type="text" class="form-control" id="lastname" />
+      <input
+        type="text"
+        class="form-control"
+        id="lastname"
+        formControlName="lastname"
+      />
     </div>
     <div class="form-group">
       <label for="email">eMail</label>
-      <input type="text" class="form-control" id="email" />
+      <input
+        type="text"
+        class="form-control"
+        id="email"
+        formControlName="email"
+      />
     </div>
 
     <div id="address">
@@ -27,6 +42,8 @@
       </div>
     </div>
 
-    <button class="btn btn-primary" type="submit">Register</button>
+    <button class="btn btn-primary" type="submit" (click)="onSubmit()">
+      Register
+    </button>
   </form>
 </div>

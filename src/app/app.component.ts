@@ -1,5 +1,5 @@
-import { Component, VERSION } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit, VERSION } from '@angular/core';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Person } from './person.model';
 
 @Component({
@@ -7,11 +7,21 @@ import { Person } from './person.model';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   person: Person = new Person();
+  regForm: FormGroup;
 
-  onSubmit(form: NgForm) {
-    Object.assign(this.person, form.value);
+  ngOnInit(): void {
+    this.regForm = new FormGroup({
+      firstname: new FormControl(),
+      lastname: new FormControl(null, Validators.required),
+      emai: new FormControl(null, [Validators.required, Validators.email]),
+    });
+  }
+
+  onSubmit() {
+    console.log(this.regForm.value);
+    Object.assign(this.person, this.regForm.value);
     console.log(this.person);
   }
 }
